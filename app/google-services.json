@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "921684002819",
+    "firebase_url": "https://kalmed-6c277.firebaseio.com",
+    "project_id": "kalmed-6c277",
+    "storage_bucket": "kalmed-6c277.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921684002819:android:2db99c295946d274",
+        "android_client_info": {
+          "package_name": "com.example.marco.kalmed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921684002819-mq6rnjf35c4fb39ur8u2iui5b6p8a5bk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.marco.kalmed",
+            "certificate_hash": "30e63d62ab8592e9dee8f33bb4439f4692b49105"
+          }
+        },
+        {
+          "client_id": "921684002819-j69mcv3hcgl97c26oeqoi9tjjilki76n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoXH1ceW1bqVj0QOi7aymjs9MPEttzkz8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921684002819-j69mcv3hcgl97c26oeqoi9tjjilki76n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">KalMed</string>
+    <string name="login">Login</string>
+    <string name="sigin">SignIn</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="logout">LogOut</string>
+    <string name="crear_consulta">Crear Consulta</string>
+    <string name="nombre_paciente">Nombre Paciente</string>
+    <string name="telefono_paciente">Telefono paciente</string>
+    <string name="correo_paciente">Correo Paciente</string>
+    <string name="fecha_consulta">Fecha Consulta</string>
+    <string name="crear_consulta_BTN">Crear Consulta</string>
+    <string name="hora_consulta">Hora Consulta</string>
+</resources>
