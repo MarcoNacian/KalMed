@@ -12,4 +12,5 @@
     <string name="fecha_consulta">Fecha Consulta</string>
     <string name="crear_consulta_BTN">Crear Consulta</string>
     <string name="hora_consulta">Hora Consulta</string>
+    <string name="crear">Crear</string>
 </resources>
