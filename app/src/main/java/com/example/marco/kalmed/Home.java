@@ -15,7 +15,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
@@ -25,7 +29,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +43,8 @@ public class Home extends AppCompatActivity {
 
     @BindView(R.id.logoutBTN)
     Button logoutBTN;
+    @BindView(R.id.ListView)
+    ListView listaCitas;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authListener;
@@ -47,7 +56,7 @@ public class Home extends AppCompatActivity {
     private static final int PROJECTION_BEGIN_INDEX = 1;
     private static final int PROJECTION_TITLE_INDEX = 2;
 
-
+    int calendarId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +78,7 @@ public class Home extends AppCompatActivity {
 
         Log.e("Cuenta", "conexion calendario");
         conexionCalendario();
-        Log.e("instancia","instancias");
+        //Log.e("instancia","instancias");
     }
 
     private void goToLogin() {
@@ -99,7 +108,7 @@ public class Home extends AppCompatActivity {
 
     public void goToCrearConsulta(View view) {
         Intent intent = new Intent(this, createMeeting.class);
-        intent.putExtra("calendario",8);
+        intent.putExtra("calendario",calendarId);
         startActivity(intent);
         finish();
     }
@@ -139,7 +148,9 @@ public class Home extends AppCompatActivity {
         cur = cr.query(uri, EVENT_PROJECTION, null, null, null);
         //cur = cr.query(uri, INSTANCE_PROJECTION, CalendarContract.Instances.EVENT_ID +" ", null, null);
 
-        Log.i("quepedo", DatabaseUtils.dumpCursorToString(cur));
+        Log.i("calendarios", DatabaseUtils.dumpCursorToString(cur));
+
+
 
         if(cur!=null){
             while (cur.moveToNext()) {
@@ -160,6 +171,8 @@ public class Home extends AppCompatActivity {
             }
             cur.moveToFirst();
 
+            calendarId = cur.getInt(0);
+
         }else{
             Log.e("Cuenta", "cur" +
                     "cursor null");
@@ -179,10 +192,15 @@ public class Home extends AppCompatActivity {
                 null,
                 null);
 
-//        while (cur2.moveToNext()) {
-//            Log.i("pinchemadre",DatabaseUtils.dumpCursorToString(cur2));
-//        }
-        Log.i("pinchemadre",DatabaseUtils.dumpCursorToString(cur2));
+        List<String> citas = new ArrayList<>();
+        while (cur2.moveToNext()) {
+            citas.add(cur2.getString(2) + " " + new Date(cur2.getLong(1)).toString());
+        }
+
+        ArrayAdapter adaptadorCitas = new ArrayAdapter<String>(this, R.layout.activity_listview,citas);
+
+        listaCitas.setAdapter(adaptadorCitas);
+        Log.i("instancias",DatabaseUtils.dumpCursorToString(cur2));
     }
 
 

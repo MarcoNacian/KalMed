@@ -54,7 +54,7 @@ public class createMeeting extends AppCompatActivity implements View.OnClickList
     final int hora = calendario.get(Calendar.HOUR_OF_DAY);
     final int minuto = calendario.get(Calendar.MINUTE);
 
-    long calID = 0;
+    long calID;
     long startMillis = 0;
     long endMillis = 0;
 
@@ -137,9 +137,9 @@ public class createMeeting extends AppCompatActivity implements View.OnClickList
         Log.i("datos", nombrePaciente + " " + telefonoPaciente + " " + correoPaciente + " " + fechaConsulta + " " + horaConsulta);
 
 
-        calID = bundle.getLong("idCalendario");
+        calID = bundle.getInt("calendario");
 
-        Date fecha = new SimpleDateFormat("dd/mm/yyyy").parse(fechaConsulta);
+        Date fecha = new SimpleDateFormat("dd/MM/yyyy").parse(fechaConsulta);
 
 
 //        Calendar beginTime = Calendar.getInstance();
@@ -165,10 +165,10 @@ public class createMeeting extends AppCompatActivity implements View.OnClickList
         ContentValues values = new ContentValues();
         values.put(CalendarContract.Events.DTSTART, fecha.getTime());
         values.put(CalendarContract.Events.DTEND,fecha.getTime());
-        values.put(CalendarContract.Events.TITLE, "Consulta de : "+ nombrePaciente);
+        values.put(CalendarContract.Events.TITLE, "Consulta de: "+ nombrePaciente);
         values.put(CalendarContract.Events.DESCRIPTION,
-                "Paciente :"+ nombrePaciente +" telefono: " + telefonoPaciente + " correo: "+ correoPaciente );
-        values.put(CalendarContract.Events.CALENDAR_ID, 8);
+                "Paciente: "+ nombrePaciente +" telefono: " + telefonoPaciente + " correo: "+ correoPaciente );
+        values.put(CalendarContract.Events.CALENDAR_ID, calID);
         values.put(CalendarContract.Events.EVENT_TIMEZONE, Calendar.getInstance().getTimeZone().getID());
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -184,6 +184,6 @@ public class createMeeting extends AppCompatActivity implements View.OnClickList
 
         // get the event ID that is the last element in the Uri
         long eventID = Long.parseLong(uri.getLastPathSegment());
-        Log.i("pff",Long.toString(eventID));
+        Log.i("IDSInstancias",Long.toString(eventID));
     }
 }
